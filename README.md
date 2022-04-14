@@ -1,2 +1,3 @@
 # sudoku
-Sudoku game
+Blind accessible sudoku game
+
