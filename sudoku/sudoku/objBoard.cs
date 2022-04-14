@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace sudoku
 {
@@ -271,6 +272,7 @@ jStart *= 3;
             return line;
         }
 
+        
         public int[] getColumn(int c)
         {
             int[] line = new int[9];
@@ -284,6 +286,53 @@ jStart *= 3;
 
             return line;
         }
+
+        //  format the row data
+                
+        public string formatRow(int r)
+        {
+            int[] row = getRow(r);
+            return formatItems(row);
+        }
+
+        //  format the column numbers
+
+        public string formatColumn(int r)
+        {
+            int[] col = getColumn(r);
+            return formatItems(col);
+        }
+
+        //  format block
+
+        public String formatBlock(int r, int c)
+        {
+            int[] block = getBlock(r, c);
+            return formatItems(block);
+        }
+
+        //  shared method for formatRow and formatColumn
+
+        private String formatItems(int[] row)
+        {
+            string str = "";
+
+            foreach (int n in row)
+            {
+                if (n > 0)
+                {
+                    str += n.ToString() + ", ";
+                }
+            }
+
+            if (str.Length > 2)
+            {
+                str = str.Substring(0, str.Length - 2);
+            }
+
+            return str;
+        }
+
 
         //  find solutions
 

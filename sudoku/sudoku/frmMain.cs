@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace sudoku
 {
@@ -17,6 +17,7 @@ namespace sudoku
 
         private objBoard puzzle;
         private TextBox[,] txtItem = new TextBox[9, 9];
+        private ContextMenu gridMenu; 
 
         //  constructor
 
@@ -110,6 +111,23 @@ namespace sudoku
             }
         }
 
+        //  build context menu before its displayed
+
+        private void gridMenu_onPopup(System.Object sender, System.EventArgs e)
+        {
+            ContextMenu cxMenu = (ContextMenu)sender;
+            TextBox txtBox = (TextBox)cxMenu.SourceControl;
+            Point p = (Point)txtBox.Tag;
+            int i = p.X;
+            int j = p.Y;
+
+            gridMenu.MenuItems.Clear();
+            gridMenu.MenuItems.Add(new MenuItem("Cell " + (i +1).ToString() + ", " + (j + 1).ToString()));
+            gridMenu.MenuItems.Add(new MenuItem("Row " + puzzle.formatRow(i)));
+            gridMenu.MenuItems.Add(new MenuItem("Column " + puzzle.formatColumn(j)));
+            gridMenu.MenuItems.Add(new MenuItem("Block " + puzzle.formatBlock(i, j)));
+        }
+    
         
 
         //-----------------------
@@ -125,6 +143,11 @@ namespace sudoku
             int x = 30;
             int y = 30;
 
+            //  set up the context menu
+
+            gridMenu = new ContextMenu();
+            gridMenu.Popup += gridMenu_onPopup;
+
             //  initialize text boxes
 
             this.SuspendLayout();
@@ -139,6 +162,7 @@ namespace sudoku
                     txtItem[i, j].Text = "";
                     txtItem[i, j].Tag = new Point(i, j);
                     txtItem[i, j].KeyDown += new KeyEventHandler(txtItem_onKeyDown);
+                    txtItem[i, j].ContextMenu = gridMenu;
                     this.Controls.Add(txtItem[i, j]);
                     x += 50;
                 }

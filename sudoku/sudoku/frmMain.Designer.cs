@@ -37,8 +37,9 @@
             // btnNew
             // 
             this.btnNew.Location = new System.Drawing.Point(0, 0);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(200, 35);
+            this.btnNew.Size = new System.Drawing.Size(267, 43);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(200, 0);
+            this.btnLoad.Location = new System.Drawing.Point(267, 0);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(200, 35);
+            this.btnLoad.Size = new System.Drawing.Size(267, 43);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(400, 0);
+            this.btnSave.Location = new System.Drawing.Point(533, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(200, 35);
+            this.btnSave.Size = new System.Drawing.Size(267, 43);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(600, 0);
+            this.btnClose.Location = new System.Drawing.Point(800, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(200, 35);
+            this.btnClose.Size = new System.Drawing.Size(267, 43);
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Quit";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -76,13 +80,14 @@
             // 
             // sudoku
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(379, 321);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnNew);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "sudoku";
             this.Text = "Sudoku";
             this.ResumeLayout(false);

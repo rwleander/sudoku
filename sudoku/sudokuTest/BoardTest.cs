@@ -107,6 +107,23 @@ namespace sudokuTest
             Assert.AreEqual(4, line[8]);
         }
 
+      //
+        [TestMethod]
+        public void TestFormatRow()
+        {
+            objBoard board = new objBoard();
+            string line;
+
+            board.setCell(3, 0, 1);
+            board.setCell(3, 2, 2);
+            board.setCell(3, 6, 3);
+            board.setCell(3, 8, 4);
+
+            line = board.formatRow(3);
+
+            Assert.AreEqual("1, 2, 3, 4", line);
+        }
+
         //  test get column
 
         [TestMethod]
@@ -128,6 +145,39 @@ namespace sudokuTest
             Assert.AreEqual(4, line[8]);
         }
 
+        //  test format block
+
+        [TestMethod]
+        public void TestFormatBlock()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            String newLine;
+
+            board.setBlock(4, line);
+
+            newLine = board.formatBlock(5, 5);
+            Assert.AreEqual("1, 2, 3, 4, 5, 6, 7, 8, 9", newLine);
+        }
+
+        [TestMethod]
+        public void TestFormatColumn()
+        {
+            objBoard board = new objBoard();
+            String line;
+
+            board.setCell(0, 3, 1);
+            board.setCell(2, 3, 2);
+            board.setCell(6, 3, 3);
+            board.setCell(8, 3, 4);
+
+            line = board.formatColumn(3);
+
+            Assert.AreEqual("1, 2, 3, 4", line);
+        }
+
+
+            
         //  test if complete
 
         [TestMethod]
