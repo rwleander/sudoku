@@ -179,24 +179,36 @@ namespace sudoku
         private void NewGame()
         {
             objBuilder bldr = new objBuilder();
+            objSolver solver = new objSolver();
+            objBoard lastPuzzle;
             frmProgress frm = new frmProgress();
+            int solutions = 1;
             int i, j, n;
 
             //  set up progress window
 
             frm.pbProgress.Minimum = 0;
-            frm.pbProgress.Maximum = 10;
+            frm.pbProgress.Maximum = 80;
             frm.pbProgress.Value = 0;
             frm.Show();
 
             //  create the board
 
             bldr.Step1();
+            lastPuzzle = bldr.puzzle;
             frm.pbProgress.Value++;
 
+            while (solutions == 1) 
+            {
+                lastPuzzle = puzzle;
+            bldr.Step2();
+            puzzle = bldr.puzzle;
+                solutions = solver.Solve(puzzle);
+            frm.pbProgress.Value++;
+        }
             //  copy to form
 
-            puzzle = bldr.puzzle;
+            puzzle = lastPuzzle;
             for (i = 0; i < 9; i++)
             {
                 for (j = 0; j < 9; j++)
@@ -205,12 +217,15 @@ namespace sudoku
                     if (n > 0)
                     {
                         txtItem[i, j].Text = n.ToString();
+                        txtItem[i, j].ReadOnly = true;
                     }
                     else
                     {
                         txtItem[i, j].Text = "";
+                        txtItem[i, j].ReadOnly = false;
                     }
                 }
+                frm.pbProgress.Value++;
             }
 
             //  close the form

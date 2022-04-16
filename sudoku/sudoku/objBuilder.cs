@@ -81,17 +81,17 @@ namespace sudoku
 
         public void Step2()
         {
-            int i = GetRandom();
-            int j = GetRandom();
+            int i = rnd.Next(9);
+            int j = rnd.Next(9);
 
             while (puzzle.getCell(i, j) == 0)
             {
-                i = GetRandom();
-                j = GetRandom();
+                i = rnd.Next(9);
+                j = rnd.Next(9);
             }
 
             puzzle.setCell(i, j, 0);
-            puzzle.setCell(10 - i, 10 - j, 0);            
+            puzzle.setCell(8 - i, 8 - j, 0);            
         }
 
         

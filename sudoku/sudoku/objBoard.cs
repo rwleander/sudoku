@@ -10,7 +10,7 @@ namespace sudoku
     public class objBoard
     {
 
-        //  private properties
+        //  public properties
 
         public int[,] grid = new int[9, 9];
                 public List<objError> ErrorList = new List<objError>();
