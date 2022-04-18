@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace sudoku
 {
@@ -419,6 +420,41 @@ jStart *= 3;
 
             return true;            
         }
-                
+
+        //  find next empty cell
+        //  
+        public Point nextEmpty(int x, int y)
+        {
+            int i = x;
+            int j = y;
+            int n = 0;
+
+
+            while (n < 2)
+            {
+                while (i < 9)
+                {
+                    while (j < 9)
+                    {
+                        j++;
+                        if (j < 9)
+                        {
+                            if (getCell(i, j) == 0)
+                            {
+                                return new Point(i, j);
+                            }
+                        }
+                    }
+                    i++;
+                    j = 0;
+                }
+                n++;
+                i = 0;
+                j = 0;
+            }
+
+            return new Point(0, 0);
+        }
+
     }
 }

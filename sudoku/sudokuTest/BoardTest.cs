@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using sudoku;
-
+using System.Drawing;
 
 namespace sudokuTest
 {
@@ -238,5 +238,35 @@ namespace sudokuTest
             Assert.AreEqual(9, missing[0]);
         }
 
+        //  test nextEmpty method
+
+//  test for item in next row
+ 
+        [TestMethod]
+        public void TestNextEmptyNextRow()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };
+            board.setBlock (0, line);
+
+            Point p = board.nextEmpty(0, 8);
+            Assert.AreEqual (new Point(1, 1), p);            
         }
+
+        //  test for roll back to beginning of puzzle
+
+        [TestMethod]
+        public void TestNextEmptyRollover()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };
+            board.setBlock(0, line);
+
+            Point p = board.nextEmpty(8, 8);
+            Assert.AreEqual(new Point(0, 1), p);
+        }
+
+//  
+
     }
+}

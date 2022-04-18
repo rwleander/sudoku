@@ -108,7 +108,14 @@ namespace sudoku
                     }
                     e.Handled = true;
                     break;
+
+                case Keys.PageDown:
+                    Point z = puzzle.nextEmpty(i, j);
+                    txtItem[z.X, z.Y].Focus();
+                    e.Handled = true;
+                    break;
             }
+                        
         }
 
         //  build context menu before its displayed
