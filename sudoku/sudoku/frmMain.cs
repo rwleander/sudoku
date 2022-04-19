@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
+using System.Media;
 
 namespace sudoku
 {
@@ -68,11 +69,81 @@ namespace sudoku
             Point p = (Point)txtBox.Tag;
             int i = p.X;
             int j = p.Y;
-
+            
             //  handle key presses
 
             switch (e.KeyCode)
             {
+                case Keys.Space:
+                    puzzle.setCell(i, j, 0);
+                    txtItem[i, j].Text = " ";
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad1:
+                case Keys.D1:
+                    handleKeystroke(i, j, 1);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad2:
+                case Keys.D2:
+                    handleKeystroke(i, j, 2);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad3:
+                case Keys.D3:
+                    handleKeystroke(i, j, 3);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad4:
+                case Keys.D4:
+                    handleKeystroke(i, j, 4);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad5:
+                case Keys.D5:
+                    handleKeystroke(i, j, 5);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad6:
+                case Keys.D6:
+                    handleKeystroke(i, j, 6);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad7:
+                case Keys.D7:
+                    handleKeystroke(i, j, 7);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad8:
+                case Keys.D8:
+                    e.SuppressKeyPress = true;
+                    handleKeystroke(i, j, 8);
+                    e.Handled = true;
+                    break;
+
+                case Keys.NumPad9:
+                case Keys.D9:
+                    handleKeystroke(i, j, 9);
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                    break;
+
                 case Keys.Up:
                     if (i > 0)
                     {
@@ -205,14 +276,14 @@ namespace sudoku
             lastPuzzle = bldr.puzzle;
             frm.pbProgress.Value++;
 
-            while (solutions == 1) 
+            while (solutions == 1)
             {
                 lastPuzzle = puzzle;
-            bldr.Step2();
-            puzzle = bldr.puzzle;
+                bldr.Step2();
+                puzzle = bldr.puzzle;
                 solutions = solver.Solve(puzzle);
-            frm.pbProgress.Value++;
-        }
+                frm.pbProgress.Value++;
+            }
             //  copy to form
 
             puzzle = lastPuzzle;
@@ -235,12 +306,45 @@ namespace sudoku
                 frm.pbProgress.Value++;
             }
 
-            //  close the form
-            
             frm.Close();
-
+            txtItem[0, 0].Focus();
         }
 
+        //  handle keystrokes
+
+        void handleKeystroke(int i, int j, int n)
+        {
+            bool inRow = false;
+            String ch;
+
+
+            int[] row = puzzle.getRow(i);
+            if (row.Contains(n)) inRow = true;
+
+            int[] col = puzzle.getColumn(j);
+            if (col.Contains(n)) inRow = true;
+
+            int[] block = puzzle.getBlock(i, j);
+            if (block.Contains(n)) inRow = true;
+
+            if (inRow == true)
+            {
+                SystemSounds.Beep.Play();
+            }
+            else
+            {
+                puzzle.setCell(i, j, n);
+            }
+            ch = puzzle.getCell(i, j).ToString();
+            if (ch == "0") ch = " ";
+            txtItem[i, j].Text = ch;
+
+            if (puzzle.Success() == true)
+            {
+                MessageBox.Show(this, "congratulations - you solved the puzzle", "Sudoku", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }               
+            
 
     }
 }
