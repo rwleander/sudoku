@@ -108,7 +108,8 @@ for (i=0; i< 9; i++)
                     err = new objError();
                     err.Dimension = "Row";
                     err.n = i + 1;
-                    err.Items = line.ToString();
+                    err.Items = formatRow(i);
+                    err.index = new Point(i, 0);
                     ErrorList.Add(err);
                 }
 
@@ -120,7 +121,8 @@ for (i=0; i< 9; i++)
                     err = new objError();
                     err.Dimension = "Column";
                     err.n = i + 1;
-                    err.Items = line.ToString();
+                    err.Items = formatColumn (i);
+                    err.index = new Point(0, i);
                     ErrorList.Add(err);
                 }
 
@@ -129,10 +131,13 @@ for (i=0; i< 9; i++)
                 line = getBlock(i);
                 if (checkLine(line) == false)
                 {
+                    int x = (int) (i / 3) * 3;
+                    int y = (int) (i % 3) * 3;
                     err = new objError();
                     err.Dimension = "Block";
                     err.n = i + 1;
-                    err.Items = line.ToString();
+                    err.Items = formatBlock(x, y);
+                    err.index = new Point(x, y);
                     ErrorList.Add(err); ;
                 }
             }

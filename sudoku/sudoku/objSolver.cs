@@ -17,7 +17,6 @@ namespace sudoku
 
         //  private fields
 
-        private objBoard BoardWork;
         private flLog log;
 
 public struct Point

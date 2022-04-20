@@ -52,6 +52,33 @@ namespace sudoku
             MessageBox.Show("Not ready");
         }
 
+        //  check board for errors
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            int i, j;
+
+            if (puzzle.Success() == true)
+            {
+                MessageBox.Show("Not ready");
+                return;
+            }
+
+            frmErrors frm = new frmErrors();
+            frm.LoadData(puzzle.ErrorList);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                i = frm.err.index.X;
+                j = frm.err.index.Y;
+                txtItem[i, j].Focus();
+            }
+            frm.Close(); ;
+
+
+
+
+        }
+
         //  close
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -144,6 +171,16 @@ namespace sudoku
                     e.Handled = true;
                     break;
 
+                case Keys.Home:
+                    txtItem[0, 0].Focus();
+                    e.Handled = true;
+                    break;
+
+                case Keys.End:
+                    txtItem[8, 8].Focus();
+                    e.Handled = true;
+                    break;
+
                 case Keys.Up:
                     if (i > 0)
                     {
@@ -218,8 +255,9 @@ namespace sudoku
         {
             int i = 0;
             int j = 0;
-            int x = 30;
-            int y = 30;
+            int x = 100;
+            int y = 100;
+            int tb = 10;
 
             //  set up the context menu
 
@@ -236,16 +274,19 @@ namespace sudoku
                     txtItem[i, j] = new TextBox();
                     txtItem[i, j].Name = "txtItem" + i.ToString() + j.ToString();
                     txtItem[i, j].Location = new Point(x, y);
-                    txtItem[i, j].Size = new Size(30, 18);
+                    txtItem[i, j].Size = new Size(20, 14);
+                    txtItem[i, j].TextAlign = HorizontalAlignment.Center;
                     txtItem[i, j].Text = "";
+                    txtItem[i, j].TabIndex = tb;
                     txtItem[i, j].Tag = new Point(i, j);
                     txtItem[i, j].KeyDown += new KeyEventHandler(txtItem_onKeyDown);
                     txtItem[i, j].ContextMenu = gridMenu;
                     this.Controls.Add(txtItem[i, j]);
-                    x += 50;
+                    x += 60;
+                    tb++;
                 }
 
-                x = 30;
+                x = 100;
                 y += 35;
             }
             this.ResumeLayout();
@@ -343,8 +384,7 @@ namespace sudoku
             {
                 MessageBox.Show(this, "congratulations - you solved the puzzle", "Sudoku", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }               
-            
+        }
 
     }
 }

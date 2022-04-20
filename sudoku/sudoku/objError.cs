@@ -1,6 +1,7 @@
 ﻿//  objError - error item
 
 using System;
+using System.Drawing;
 
 namespace sudoku
 {
@@ -12,6 +13,7 @@ namespace sudoku
         public String Dimension = "";
         public int n = 0;
         public String Items = "";
+        public Point index;
 
     }
 }

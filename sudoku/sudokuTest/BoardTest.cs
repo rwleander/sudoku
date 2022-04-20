@@ -216,10 +216,15 @@ namespace sudokuTest
 
         [TestMethod]
         public void TestSuccess()
-        {
-            objBoard board = new objBoard();
+        {            
+            objBoard board1 = new objBoard();
 
-            Assert.AreEqual(false, board.Success());
+            objBuilder bldr = new objBuilder();
+            bldr.Step1();
+            objBoard board2 = bldr.puzzle;
+
+            Assert.AreEqual(false, board1.Success());
+            Assert.AreEqual(true, board2.Success());
         }
 
         //  check get solutions

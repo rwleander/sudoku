@@ -32,6 +32,7 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnNew
@@ -39,7 +40,7 @@
             this.btnNew.Location = new System.Drawing.Point(0, 0);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(267, 43);
+            this.btnNew.Size = new System.Drawing.Size(200, 40);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -47,10 +48,10 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(267, 0);
+            this.btnLoad.Location = new System.Drawing.Point(200, 0);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(267, 43);
+            this.btnLoad.Size = new System.Drawing.Size(200, 40);
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -58,10 +59,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(533, 0);
+            this.btnSave.Location = new System.Drawing.Point(400, 0);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(267, 43);
+            this.btnSave.Size = new System.Drawing.Size(200, 40);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -72,17 +73,28 @@
             this.btnClose.Location = new System.Drawing.Point(800, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(267, 43);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.Size = new System.Drawing.Size(200, 40);
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Quit";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Location = new System.Drawing.Point(600, 0);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(200, 40);
+            this.btnCheck.TabIndex = 3;
+            this.btnCheck.Text = "Check Board";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
@@ -100,6 +112,7 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnCheck;
     }
 }
 
