@@ -319,7 +319,7 @@ jStart *= 3;
 
         //  shared method for formatRow and formatColumn
 
-        private String formatItems(int[] row)
+        public String formatItems(int[] row)
         {
             string str = "";
 
@@ -327,13 +327,12 @@ jStart *= 3;
             {
                 if (n > 0)
                 {
-                    str += n.ToString() + ", ";
+                    str += n.ToString() + " ";
                 }
-            }
-
-            if (str.Length > 2)
-            {
-                str = str.Substring(0, str.Length - 2);
+                else
+                {
+                    str += "* ";
+                }
             }
 
             return str;
@@ -427,15 +426,14 @@ jStart *= 3;
         }
 
         //  find next empty cell
-        //  
+         
         public Point nextEmpty(int x, int y)
         {
             int i = x;
             int j = y;
             int n = 0;
 
-
-            while (n < 2)
+                        while (n < 2)
             {
                 while (i < 9)
                 {
@@ -451,7 +449,7 @@ jStart *= 3;
                         }
                     }
                     i++;
-                    j = 0;
+                    j = -1;
                 }
                 n++;
                 i = 0;
@@ -460,6 +458,41 @@ jStart *= 3;
 
             return new Point(0, 0);
         }
+
+        //  find previous empty cell
+
+        public Point prevEmpty(int x, int y)
+        {
+            int i = x;
+            int j = y;
+            int n = 0;
+
+            while (n < 2)
+            {
+                while (i >= 0)
+                {
+                    while (j >= 0)
+                    {
+                        j--;
+                        if (j >= 0)
+                        {
+                            if (getCell(i, j) == 0)
+                            {
+                                return new Point(i, j);
+                            }
+                        }
+                    }
+                    i--;
+                    j = 9;
+                }
+                n++;
+                i = 8;
+                j = 9;
+            }
+
+            return new Point(0, 0);
+        }
+
 
     }
 }

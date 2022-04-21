@@ -89,6 +89,7 @@ namespace sudoku
 
         public void txtItem_onKeyDown(object sender, KeyEventArgs e)
         {
+            Point z;
 
             //  get the coordinates of the current text box
 
@@ -218,12 +219,19 @@ namespace sudoku
                     break;
 
                 case Keys.PageDown:
-                    Point z = puzzle.nextEmpty(i, j);
+                    z = puzzle.nextEmpty(i, j);
                     txtItem[z.X, z.Y].Focus();
                     e.Handled = true;
                     break;
+
+                case Keys.PageUp:
+                    z = puzzle.prevEmpty(i, j);
+                    txtItem[z.X, z.Y].Focus();
+                    e.Handled = true;
+                    break;
+
             }
-                        
+
         }
 
         //  build context menu before its displayed

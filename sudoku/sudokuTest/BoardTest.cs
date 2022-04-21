@@ -121,7 +121,7 @@ namespace sudokuTest
 
             line = board.formatRow(3);
 
-            Assert.AreEqual("1, 2, 3, 4", line);
+            Assert.AreEqual("1 * 2 * * * 3 * 4 ", line);
         }
 
         //  test get column
@@ -157,7 +157,18 @@ namespace sudokuTest
             board.setBlock(4, line);
 
             newLine = board.formatBlock(5, 5);
-            Assert.AreEqual("1, 2, 3, 4, 5, 6, 7, 8, 9", newLine);
+            Assert.AreEqual("1 2 3 4 5 6 7 8 9 ", newLine);
+        }
+
+        //  test format item method
+
+        [TestMethod]
+        public void TestFormatItem()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 2, 0, 4, 5, 0, 7, 8, 9 };
+            String newLine = board.formatItems(line);
+Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
         }
 
         [TestMethod]
@@ -173,7 +184,7 @@ namespace sudokuTest
 
             line = board.formatColumn(3);
 
-            Assert.AreEqual("1, 2, 3, 4", line);
+            Assert.AreEqual("1 * 2 * * * 3 * 4 ", line);
         }
 
 
@@ -271,7 +282,32 @@ namespace sudokuTest
             Assert.AreEqual(new Point(0, 1), p);
         }
 
-//  
+        //  test previous empty 
+
+        [TestMethod]
+            public void TestPrevEmptyPrevRow()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };
+            board.setBlock(0, line);
+
+            Point p = board.prevEmpty(1, 1);
+            Assert.AreEqual(new Point(0, 8), p);
+        }
+
+        //  test previous empty roll over
+        //  
+        [TestMethod]
+        public void TestPrevEmptyRollover()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };
+            board.setBlock(0, line);
+
+            Point p = board.prevEmpty(0, 0);
+            Assert.AreEqual(new Point(8, 8), p);
+        }
+
 
     }
 }
