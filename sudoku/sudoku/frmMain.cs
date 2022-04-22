@@ -49,7 +49,20 @@ namespace sudoku
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not ready");
+            if (dlgSave.ShowDialog() == DialogResult.OK )
+            {
+                flData fl = new flData(dlgSave.FileName);
+                try
+                {
+                    fl.Save(puzzle.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(e.ToString());
+                }                
+            }
+
+
         }
 
         //  check board for errors

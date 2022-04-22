@@ -55,33 +55,14 @@ namespace sudoku
         public override  String ToString ()
         {
             StringBuilder bldr = new StringBuilder();
-            int i, j, n;
 
-            //  copy the board to the string builder
-
-            for (i = 0; i < 9; i++)
+            for (int i = 0; i < 9; i++)
             {
-                for (j = 0; j < 9; j++)
-                {
-                    n = getCell(i, j);
-                    if (n == 0)
-                    {
-                        bldr.Append ("*"); 
-                    }
-                    else
-                    {
-                        bldr.Append(n.ToString());
-                    }
-                    if (j < 8)
-                    {
-                        bldr.Append(", ");
-                    }
-                }
-                bldr.AppendLine();
+                bldr.AppendLine(formatRow(i));
             }
+
             return bldr.ToString();
         }
-
 
         // was the board completed successfully
 

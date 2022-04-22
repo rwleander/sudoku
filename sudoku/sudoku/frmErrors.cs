@@ -35,9 +35,16 @@ namespace sudoku
             DialogResult = DialogResult.OK;
         }
 
-//  load the error list
+        //  close form
 
-        public void LoadData(List<objError > errorList)
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+            //  load the error list
+
+            public void LoadData(List<objError > errorList)
         {
             ListViewItem lvItem;
 

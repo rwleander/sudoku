@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="flData.cs" />
     <Compile Include="flLog.cs" />
     <Compile Include="frmErrors.cs">
       <SubType>Form</SubType>

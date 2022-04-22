@@ -33,6 +33,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // btnNew
@@ -89,6 +91,20 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
+            // dlgOpen
+            // 
+            this.dlgOpen.DefaultExt = "txt";
+            this.dlgOpen.FileName = "sudoku.txt";
+            this.dlgOpen.Filter = "text *.txt|all *.*";
+            this.dlgOpen.Title = "Sudoku";
+            // 
+            // dlgSave
+            // 
+            this.dlgSave.DefaultExt = "txt";
+            this.dlgSave.FileName = "sudoku.txt";
+            this.dlgSave.Filter = "text *.txt|all *.*";
+            this.dlgSave.Title = "Sudoku";
+            // 
             // sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -113,6 +129,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.SaveFileDialog dlgSave;
     }
 }
 
