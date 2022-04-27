@@ -19,12 +19,12 @@ namespace sudoku
 
         private flLog log;
 
-public struct Point
+        public struct Point
         {
             public int x;
             public int y;
         }
-        
+
         //  main method
 
         public int Solve(objBoard board)
@@ -63,7 +63,7 @@ public struct Point
 
             //  find first empty cell
 
-            p = findFirst(Puzzle );
+            p = findFirst(Puzzle);
 
             //  if logging, print puzzle
 
@@ -71,7 +71,7 @@ public struct Point
             {
                 log.WriteLine(DateTime.Now.ToShortTimeString() + " finding obvious cells");
                 log.WriteLine(Puzzle.ToString());
-                            }
+            }
 
             //  loop through empty cells
 
@@ -87,7 +87,7 @@ public struct Point
                     }
                     n++;
                 }
-                
+
                 p = findNext(Puzzle, p.x, p.y);
             }
 
@@ -100,7 +100,7 @@ public struct Point
         {
             List<int> values;
             Point p;
-                        
+
             //  find first empty cell
 
             p = findFirst(Puzzle);
@@ -112,8 +112,8 @@ public struct Point
                 values = Puzzle.getSolutions(p.x, p.y);
                 if (values.Count > 0)
                 {
-                    foreach(int v in values)
-                        {
+                    foreach (int v in values)
+                    {
                         thisPuzzle.setCell(p.x, p.y, v);
                         if (logLevel > 0) log.WriteLine("trying " + p.x.ToString() + ", " + p.y.ToString() + ": " + v.ToString());
                         fillRecursively(thisPuzzle);
@@ -130,15 +130,15 @@ public struct Point
                     Solutions++;
                     if (logLevel > 0) log.WriteLine("Found a solution~!");
                 }
-            }            
+            }
         }
 
-            //--------------
-            //  helper methods
+        //--------------
+        //  helper methods
 
-            //  find first empty cell
+        //  find first empty cell
 
-            public Point findFirst(objBoard b)
+        public Point findFirst(objBoard b)
         {
             return findZero(b, 0, 0);
         }
@@ -162,16 +162,16 @@ public struct Point
             return findZero(b, x, y);
         }
 
-            private Point findZero (objBoard b, int x0, int y0)
-            {
-                Point p;
-                int x = x0;
+        private Point findZero(objBoard b, int x0, int y0)
+        {
+            Point p;
+            int x = x0;
             int y = y0;
 
             while (x < 9)
             {
-                while (y < 9)                  
-                  {
+                while (y < 9)
+                {
                     if (b.getCell(x, y) == 0)
                     {
                         p = new Point();
@@ -181,7 +181,7 @@ public struct Point
                     }
 
                     y++;
-                }                
+                }
 
                 x++;
                 y = 0;
@@ -193,7 +193,7 @@ public struct Point
             p.x = 10;
             p.y = 10;
             return p;
-            }
+        }
 
     }
 }

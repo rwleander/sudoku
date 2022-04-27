@@ -6,30 +6,30 @@ using sudoku;
 namespace sudokuTest
 {
     [TestClass]
-    public class BuilderTest 
+    public class BuilderTest
     {
 
-//  helper methods
+        //  helper methods
 
-private objBuilder CreateBuilder()
-{
-objBuilder bldr = new objBuilder();
-int[] line = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-bldr.puzzle.setBlock(0, line);
-return bldr;
-}
+        private objBuilder CreateBuilder()
+        {
+            objBuilder bldr = new objBuilder();
+            int[] line = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            bldr.puzzle.setBlock(0, line);
+            return bldr;
+        }
 
-//  block up method
+        //  block up method
 
         [TestMethod]
         public void TestBlockUp()
         {
-objBuilder bldr = CreateBuilder();
-int[] newLine = {4, 5, 6, 7, 8, 9, 1, 2, 3};
+            objBuilder bldr = CreateBuilder();
+            int[] newLine = { 4, 5, 6, 7, 8, 9, 1, 2, 3 };
 
-bldr.BlockUp(0);
+            bldr.BlockUp(0);
             int[] line = bldr.puzzle.getBlock(0);
-            Assert.AreEqual(newLine.ToString(), line.ToString ());
+            Assert.AreEqual(newLine.ToString(), line.ToString());
         }
 
         //  test block down method
@@ -38,7 +38,7 @@ bldr.BlockUp(0);
         public void TestBlockDown()
         {
             objBuilder bldr = CreateBuilder();
-            int[] newLine = { 7, 8, 9, 1, 2, 3, 4, 5, 6};
+            int[] newLine = { 7, 8, 9, 1, 2, 3, 4, 5, 6 };
 
             bldr.BlockDown(0);
             int[] line = bldr.puzzle.getBlock(0);
@@ -53,7 +53,7 @@ bldr.BlockUp(0);
             objBuilder bldr = CreateBuilder();
             int[] newLine = { 2, 3, 1, 5, 6, 4, 8, 9, 7 };
 
-                        bldr.BlockLeft(0);
+            bldr.BlockLeft(0);
             int[] line = bldr.puzzle.getBlock(0);
             Assert.AreEqual(newLine.ToString(), line.ToString());
         }
@@ -78,7 +78,7 @@ bldr.BlockUp(0);
         {
             objBuilder bldr = new objBuilder();
             bldr.Step1();
-            Assert.IsTrue (bldr.puzzle.Success());
+            Assert.IsTrue(bldr.puzzle.Success());
         }
 
         //  test step 2
@@ -89,7 +89,7 @@ bldr.BlockUp(0);
             objBuilder bldr = new objBuilder();
             bldr.Step1();
             bldr.Step2();
-            Assert.IsFalse (bldr.puzzle.Success());
+            Assert.IsFalse(bldr.puzzle.Success());
         }
 
     }

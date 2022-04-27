@@ -17,8 +17,8 @@ namespace sudokuTest
         {
             objSolver solver = new objSolver();
             objBoard board = new objBoard();
-            
-                        objSolver.Point p = solver.findFirst(board);
+
+            objSolver.Point p = solver.findFirst(board);
 
             Assert.AreEqual(0, p.x);
             Assert.AreEqual(0, p.y);
@@ -58,6 +58,6 @@ namespace sudokuTest
 
             Assert.AreEqual(n, solver.Puzzle.getCell(1, 1));
         }
-        
+
     }
 }

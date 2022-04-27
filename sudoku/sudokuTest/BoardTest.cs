@@ -23,10 +23,10 @@ namespace sudokuTest
 
             objBoard board2 = new objBoard(board1);
             int[] line2 = board2.getBlock(0);
-             
+
             Assert.AreEqual(line1.ToString(), line2.ToString());
         }
-        
+
         //  test setBlock
 
         [TestMethod]
@@ -37,11 +37,11 @@ namespace sudokuTest
 
             board.setBlock(4, line);
 
-            Assert.AreEqual (1, board.getCell(3, 3));
-            Assert.AreEqual (3, board.getCell(3, 5));
-            Assert.AreEqual (5, board.getCell(4, 4));
-            Assert.AreEqual (7, board.getCell(5, 3));
-            Assert.AreEqual (9, board.getCell(5, 5));
+            Assert.AreEqual(1, board.getCell(3, 3));
+            Assert.AreEqual(3, board.getCell(3, 5));
+            Assert.AreEqual(5, board.getCell(4, 4));
+            Assert.AreEqual(7, board.getCell(5, 3));
+            Assert.AreEqual(9, board.getCell(5, 5));
         }
 
         //  test getBlock
@@ -50,7 +50,7 @@ namespace sudokuTest
         public void TestGetBlock()
         {
             objBoard board = new objBoard();
-            int[] line; 
+            int[] line;
 
             board.setCell(3, 3, 1);
             board.setCell(3, 5, 2);
@@ -107,7 +107,7 @@ namespace sudokuTest
             Assert.AreEqual(4, line[8]);
         }
 
-      //
+        //
         [TestMethod]
         public void TestFormatRow()
         {
@@ -168,7 +168,7 @@ namespace sudokuTest
             objBoard board = new objBoard();
             int[] line = { 1, 2, 0, 4, 5, 0, 7, 8, 9 };
             String newLine = board.formatItems(line);
-Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
+            Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
         }
 
 
-            
+
         //  test if complete
 
         [TestMethod]
@@ -214,8 +214,8 @@ Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
         public void TestCheckLine()
         {
             objBoard board = new objBoard();
-            int[] lineTrue = { 9, 7, 5, 3, 1, 8, 6, 4, 2};
-            int[] lineFalse1 = {9, 7, 5, 3, 1, 8, 6, 4, 6};
+            int[] lineTrue = { 9, 7, 5, 3, 1, 8, 6, 4, 2 };
+            int[] lineFalse1 = { 9, 7, 5, 3, 1, 8, 6, 4, 6 };
             int[] lineFalse2 = { 9, 7, 5, 3, 1, 8, 6, 4, 0 };
 
             Assert.AreEqual(true, board.checkLine(lineTrue));
@@ -227,7 +227,7 @@ Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
 
         [TestMethod]
         public void TestSuccess()
-        {            
+        {
             objBoard board1 = new objBoard();
 
             objBuilder bldr = new objBuilder();
@@ -256,17 +256,17 @@ Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
 
         //  test nextEmpty method
 
-//  test for item in next row
- 
+        //  test for item in next row
+
         [TestMethod]
         public void TestNextEmptyNextRow()
         {
             objBoard board = new objBoard();
             int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };
-            board.setBlock (0, line);
+            board.setBlock(0, line);
 
             Point p = board.nextEmpty(0, 8);
-            Assert.AreEqual (new Point(1, 1), p);            
+            Assert.AreEqual(new Point(1, 1), p);
         }
 
         //  test for roll back to beginning of puzzle
@@ -285,7 +285,7 @@ Assert.AreEqual("1 2 * 4 5 * 7 8 9 ", newLine);
         //  test previous empty 
 
         [TestMethod]
-            public void TestPrevEmptyPrevRow()
+        public void TestPrevEmptyPrevRow()
         {
             objBoard board = new objBoard();
             int[] line = { 1, 0, 3, 4, 0, 6, 7, 8, 9 };

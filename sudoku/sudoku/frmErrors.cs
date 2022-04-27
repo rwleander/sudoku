@@ -11,7 +11,7 @@ namespace sudoku
 
         public objError err;
 
-//  constructor
+        //  constructor
 
         public frmErrors()
         {
@@ -42,9 +42,9 @@ namespace sudoku
             DialogResult = DialogResult.Cancel;
         }
 
-            //  load the error list
+        //  load the error list
 
-            public void LoadData(List<objError > errorList)
+        public void LoadData(List<objError> errorList)
         {
             ListViewItem lvItem;
 

@@ -18,7 +18,7 @@ namespace sudoku
         {
             StreamWriter wrtr;
 
-//  delete the old file
+            //  delete the old file
 
             if (File.Exists(fileName))
             {
@@ -35,7 +35,7 @@ namespace sudoku
             catch
             {
                 throw;
-            }            
+            }
         }
 
         //  write a line to the log
@@ -60,6 +60,6 @@ namespace sudoku
             wrtr.WriteLine(txt);
             wrtr.Close();
         }
-        
+
     }
 }

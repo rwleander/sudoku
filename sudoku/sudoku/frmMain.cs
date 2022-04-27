@@ -18,20 +18,20 @@ namespace sudoku
 
         private objBoard puzzle;
         private TextBox[,] txtItem = new TextBox[9, 9];
-        private ContextMenu gridMenu; 
+        private ContextMenu gridMenu;
 
         //  constructor
 
         public sudoku()
         {
-            InitializeComponent();            
+            InitializeComponent();
             InitializeGrid();
         }
 
         //  event handlers
 
 
-            //  new game
+        //  new game
 
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -67,7 +67,7 @@ namespace sudoku
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (dlgSave.ShowDialog() == DialogResult.OK )
+            if (dlgSave.ShowDialog() == DialogResult.OK)
             {
                 flData fl = new flData(dlgSave.FileName);
                 try
@@ -77,7 +77,7 @@ namespace sudoku
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                }                
+                }
             }
 
 
@@ -128,7 +128,7 @@ namespace sudoku
             Point p = (Point)txtBox.Tag;
             int i = p.X;
             int j = p.Y;
-            
+
             //  handle key presses
 
             switch (e.KeyCode)
@@ -276,18 +276,19 @@ namespace sudoku
             int j = p.Y;
 
             gridMenu.MenuItems.Clear();
-            gridMenu.MenuItems.Add(new MenuItem("Cell " + (i +1).ToString() + ", " + (j + 1).ToString()));
+            gridMenu.MenuItems.Add(new MenuItem("Cell " + (i + 1).ToString() + ", " + (j + 1).ToString()));
             gridMenu.MenuItems.Add(new MenuItem("Row " + puzzle.formatRow(i)));
             gridMenu.MenuItems.Add(new MenuItem("Column " + puzzle.formatColumn(j)));
             gridMenu.MenuItems.Add(new MenuItem("Block " + puzzle.formatBlock(i, j)));
+            gridMenu.MenuItems.Add(new MenuItem("location " + txtBox.Location.ToString()));
         }
-    
-        
+
+
 
         //-----------------------
         //  private methods
 
-        
+
         //  initialize grid
 
         private void InitializeGrid()
@@ -322,11 +323,13 @@ namespace sudoku
                     txtItem[i, j].ContextMenu = gridMenu;
                     this.Controls.Add(txtItem[i, j]);
                     x += 60;
+                    if (j == 2 || j == 5) x += 20;
                     tb++;
                 }
 
                 x = 100;
                 y += 35;
+                if (i == 2 || i == 5) y += 10;
             }
             this.ResumeLayout();
         }
@@ -341,7 +344,7 @@ namespace sudoku
             objBoard lastPuzzle;
             frmProgress frm = new frmProgress();
             int solutions = 1;
-            
+
             //  set up progress window
 
             frm.pbProgress.Minimum = 0;
@@ -367,9 +370,9 @@ namespace sudoku
             //  copy to form
 
             puzzle = lastPuzzle;
-            loadPage();            
+            loadPage();
 
-        frm.Close();
+            frm.Close();
         }
 
         //  load the puzzle to the page
@@ -394,7 +397,7 @@ namespace sudoku
                         txtItem[i, j].ReadOnly = false;
                     }
                 }
-            }    
+            }
 
             txtItem[0, 0].Focus();
         }

@@ -24,7 +24,7 @@ namespace sudoku
 
         //  load data from file
 
-public String load()
+        public String load()
         {
             StreamReader rdr;
             String data;
@@ -54,7 +54,7 @@ public String load()
             try
             {
                 wrtr = File.CreateText(fileName);
-                wrtr.WriteLine(puzzle.ToString ());
+                wrtr.WriteLine(puzzle.ToString());
                 wrtr.Close();
             }
             catch (Exception e)

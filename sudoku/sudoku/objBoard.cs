@@ -15,9 +15,9 @@ namespace sudoku
         //  public properties
 
         public int[,] grid = new int[9, 9];
-                public List<objError> ErrorList = new List<objError>();
+        public List<objError> ErrorList = new List<objError>();
 
-//  constructor - initialize to 0's
+        //  constructor - initialize to 0's
 
         public objBoard()
         {
@@ -34,7 +34,7 @@ namespace sudoku
                 }
                 i++;
             }
-            }
+        }
 
         //  copy constructor
 
@@ -46,14 +46,14 @@ namespace sudoku
             {
                 for (j = 0; j < 9; j++)
                 {
-                    setCell(i, j,board1.getCell(i, j));
+                    setCell(i, j, board1.getCell(i, j));
                 }
             }
         }
 
         //  format to string
 
-        public override  String ToString ()
+        public override String ToString()
         {
             StringBuilder bldr = new StringBuilder();
 
@@ -69,15 +69,15 @@ namespace sudoku
 
         public void fromString(String str)
         {
-            String[] lines = str.Split((char)10);            
+            String[] lines = str.Split((char)10);
             int i = 0;
             int j = 0;
             int n;
 
-            foreach (string line in lines) 
+            foreach (string line in lines)
             {
                 j = 0;
-                foreach (char ch in  line)
+                foreach (char ch in line)
                 {
                     if (ch != ' ' && j < 9)
                     {
@@ -91,12 +91,12 @@ namespace sudoku
                 i++;
                 if (i >= 9) return;
             }
-                        
+
         }
 
         // was the board completed successfully
 
-            public bool Success()
+        public bool Success()
         {
             objError err;
             int[] line;
@@ -108,7 +108,7 @@ namespace sudoku
 
             //  check each dimension
 
-for (i=0; i< 9; i++)
+            for (i = 0; i < 9; i++)
             {
 
                 //  row
@@ -132,7 +132,7 @@ for (i=0; i< 9; i++)
                     err = new objError();
                     err.Dimension = "Column";
                     err.n = i + 1;
-                    err.Items = formatColumn (i);
+                    err.Items = formatColumn(i);
                     err.index = new Point(0, i);
                     ErrorList.Add(err);
                 }
@@ -142,8 +142,8 @@ for (i=0; i< 9; i++)
                 line = getBlock(i);
                 if (checkLine(line) == false)
                 {
-                    int x = (int) (i / 3) * 3;
-                    int y = (int) (i % 3) * 3;
+                    int x = (int)(i / 3) * 3;
+                    int y = (int)(i % 3) * 3;
                     err = new objError();
                     err.Dimension = "Block";
                     err.n = i + 1;
@@ -196,7 +196,7 @@ for (i=0; i< 9; i++)
 
         public int[] getBlock(int i, int j)
         {
-            int[,] blocks= {
+            int[,] blocks = {
                 { 0, 0, 0, 1, 1, 1, 2, 2, 2},
                                 { 0, 0, 0, 1, 1, 1, 2, 2, 2},
                                 { 0, 0, 0, 1, 1, 1, 2, 2, 2},
@@ -209,7 +209,7 @@ for (i=0; i< 9; i++)
             };
 
             int b = blocks[i, j];
-            return getBlock(b);            
+            return getBlock(b);
         }
 
         public int[] getBlock(int b)
@@ -222,7 +222,7 @@ for (i=0; i< 9; i++)
             iStart = b / 3;
             iStart *= 3;
             jStart = b % 3;
-jStart *= 3;
+            jStart *= 3;
 
             // copy the array
 
@@ -289,7 +289,7 @@ jStart *= 3;
             return line;
         }
 
-        
+
         public int[] getColumn(int c)
         {
             int[] line = new int[9];
@@ -305,7 +305,7 @@ jStart *= 3;
         }
 
         //  format the row data
-                
+
         public string formatRow(int r)
         {
             int[] row = getRow(r);
@@ -358,7 +358,7 @@ jStart *= 3;
             int[] counter = new int[10];
             int[] line;
             int i = 1;
-                        
+
             //  fill the counter list
 
             for (i = 0; i < 10; i++)
@@ -385,7 +385,7 @@ jStart *= 3;
             //  block
 
             line = getBlock(x, y);
-            for (i=0; i<9; i++)
+            for (i = 0; i < 9; i++)
             {
                 counter[line[i]]++;
             }
@@ -400,9 +400,9 @@ jStart *= 3;
                 }
             }
 
-                return missing;
-            }
-            
+            return missing;
+        }
+
         //  check line for missing or duplicate values
 
         public bool checkLine(int[] line)
@@ -433,18 +433,18 @@ jStart *= 3;
                 i++;
             }
 
-            return true;            
+            return true;
         }
 
         //  find next empty cell
-         
+
         public Point nextEmpty(int x, int y)
         {
             int i = x;
             int j = y;
             int n = 0;
 
-                        while (n < 2)
+            while (n < 2)
             {
                 while (i < 9)
                 {

@@ -10,7 +10,7 @@ namespace sudoku
 
         //  public properties
 
-            public         objBoard puzzle = new objBoard ();
+        public objBoard puzzle = new objBoard();
 
         //  private fields
 
@@ -30,9 +30,9 @@ namespace sudoku
             int[] line = getRandom();
 
             for (i = 0; i < 9; i++)
-            { 
-            puzzle.setBlock(i, line);
-        }
+            {
+                puzzle.setBlock(i, line);
+            }
 
             //  shift columns up or down 
 
@@ -91,10 +91,10 @@ namespace sudoku
             }
 
             puzzle.setCell(i, j, 0);
-            puzzle.setCell(8 - i, 8 - j, 0);            
+            puzzle.setCell(8 - i, 8 - j, 0);
         }
 
-        
+
         //  shift block up one row
 
         public void BlockUp(int n)
@@ -111,7 +111,7 @@ namespace sudoku
             }
             line[6] = x;
             line[7] = y;
-            line[8] = z;            
+            line[8] = z;
             puzzle.setBlock(n, line);
         }
 
@@ -131,7 +131,7 @@ namespace sudoku
             }
             line[0] = x;
             line[1] = y;
-            line[2] = z;            
+            line[2] = z;
             puzzle.setBlock(n, line);
         }
 
@@ -181,7 +181,7 @@ namespace sudoku
         public int[] getRandom()
         {
             int[] line = new int[9];
-SortedList<int, int> nums = new SortedList<int, int>();
+            SortedList<int, int> nums = new SortedList<int, int>();
             int n = 1;
 
             //  fill the numbers list with random sort keys
@@ -201,21 +201,21 @@ SortedList<int, int> nums = new SortedList<int, int>();
                 n++;
             }
 
-            return line;            
+            return line;
         }
 
         //  get a random number from 0 to 8
 
         public int GetRandom()
         {
-return rnd.Next(8);            
+            return rnd.Next(8);
         }
 
         //  random coin toss - return true or false
 
         public bool CoinToss()
         {
-            return (rnd.Next() > (int.MaxValue / 2)); 
+            return (rnd.Next() > (int.MaxValue / 2));
         }
 
 
