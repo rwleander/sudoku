@@ -42,7 +42,25 @@ namespace sudoku
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not ready");
+            String data = "";
+
+            if (dlgOpen.ShowDialog() == DialogResult.OK)
+            {
+                flData fl = new flData(dlgOpen.FileName);
+
+                try
+                {
+                    data = fl.load();
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(x.ToString());
+                }
+
+                puzzle = new objBoard();
+                puzzle.fromString(data);
+                loadPage();
+            }
         }
 
         //  save to disk
@@ -54,11 +72,11 @@ namespace sudoku
                 flData fl = new flData(dlgSave.FileName);
                 try
                 {
-                    fl.Save(puzzle.ToString());
+                    fl.Save(puzzle);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(e.ToString());
+                    MessageBox.Show(ex.ToString());
                 }                
             }
 
@@ -323,8 +341,7 @@ namespace sudoku
             objBoard lastPuzzle;
             frmProgress frm = new frmProgress();
             int solutions = 1;
-            int i, j, n;
-
+            
             //  set up progress window
 
             frm.pbProgress.Minimum = 0;
@@ -346,9 +363,21 @@ namespace sudoku
                 solutions = solver.Solve(puzzle);
                 frm.pbProgress.Value++;
             }
+
             //  copy to form
 
             puzzle = lastPuzzle;
+            loadPage();            
+
+        frm.Close();
+        }
+
+        //  load the puzzle to the page
+
+        public void loadPage()
+        {
+            int i, j, n;
+
             for (i = 0; i < 9; i++)
             {
                 for (j = 0; j < 9; j++)
@@ -365,10 +394,8 @@ namespace sudoku
                         txtItem[i, j].ReadOnly = false;
                     }
                 }
-                frm.pbProgress.Value++;
-            }
+            }    
 
-            frm.Close();
             txtItem[0, 0].Focus();
         }
 

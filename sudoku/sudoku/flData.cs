@@ -24,21 +24,37 @@ namespace sudoku
 
         //  load data from file
 
-public void load()
+public String load()
         {
+            StreamReader rdr;
+            String data;
+
+            try
+            {
+                rdr = File.OpenText(fileName);
+            }
+            catch (Exception e)
+            {
+                throw (e);
+            }
+
+            data = rdr.ReadToEnd();
+            rdr.Close();
+
+            return data;
         }
 
 
         //  write the data to t a text file named fileName
 
-        public void Save(String data)
+        public void Save(objBoard puzzle)
         {
             StreamWriter wrtr;
 
             try
             {
                 wrtr = File.CreateText(fileName);
-                wrtr.WriteLine(data);
+                wrtr.WriteLine(puzzle.ToString ());
                 wrtr.Close();
             }
             catch (Exception e)

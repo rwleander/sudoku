@@ -94,7 +94,7 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "txt";
-            this.dlgOpen.FileName = "sudoku.txt";
+            this.dlgOpen.FileName = "*.txt";
             this.dlgOpen.Filter = "text *.txt|all *.*";
             this.dlgOpen.Title = "Sudoku";
             // 

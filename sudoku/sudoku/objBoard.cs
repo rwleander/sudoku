@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace sudoku
 {
@@ -62,6 +63,35 @@ namespace sudoku
             }
 
             return bldr.ToString();
+        }
+
+        //  load from string - 9 rows of 9 digits
+
+        public void fromString(String str)
+        {
+            String[] lines = str.Split((char)10);            
+            int i = 0;
+            int j = 0;
+            int n;
+
+            foreach (string line in lines) 
+            {
+                j = 0;
+                foreach (char ch in  line)
+                {
+                    if (ch != ' ' && j < 9)
+                    {
+                        n = ch - '0';
+                        if (n > 9) n = 0;
+                        setCell(i, j, n);
+                        j++;
+                    }
+                }
+
+                i++;
+                if (i >= 9) return;
+            }
+                        
         }
 
         // was the board completed successfully
