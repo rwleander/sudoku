@@ -30,6 +30,41 @@ namespace sudoku
 
         //  event handlers
 
+        //  layout - called on resizing of window
+
+        private void sudoku_Layout(object sender, LayoutEventArgs e)
+        {
+            int h, w, bx, by, bw, bh;
+
+            w = ClientRectangle.Width;
+            h = ClientRectangle.Height;
+
+            bx = w / 5;
+            by = 2;
+            bw = bx - 2;
+            bh = btnNew.Height;
+
+            SuspendLayout();
+
+            btnNew.Location = new Point(0, by);
+            btnNew.Size = new Size(bw, bh);
+
+            btnLoad.Location = new Point(bx, by);
+            btnLoad .Size = new Size(bw, bh);
+
+            btnSave.Location = new Point(bx * 2, by);
+            btnSave .Size = new Size(bw, bh);
+
+            btnCheck.Location = new Point (bx * 3, by);
+            btnCheck .Size = new Size(bw, bh);
+
+            btnClose.Location = new Point(bx * 4, by);
+            btnClose .Size = new Size(bw, bh);
+
+            ResumeLayout();
+
+        }
+
 
         //  new game
 
@@ -280,7 +315,7 @@ namespace sudoku
             gridMenu.MenuItems.Add(new MenuItem("Row " + puzzle.formatRow(i)));
             gridMenu.MenuItems.Add(new MenuItem("Column " + puzzle.formatColumn(j)));
             gridMenu.MenuItems.Add(new MenuItem("Block " + puzzle.formatBlock(i, j)));
-            gridMenu.MenuItems.Add(new MenuItem("location " + txtBox.Location.ToString()));
+            //gridMenu.MenuItems.Add(new MenuItem("location " + txtBox.Location.ToString()));
         }
 
 
@@ -436,6 +471,7 @@ namespace sudoku
                 MessageBox.Show(this, "congratulations - you solved the puzzle", "Sudoku", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
 
     }
 }

@@ -118,6 +118,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "sudoku";
             this.Text = "Sudoku";
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.sudoku_Layout);
             this.ResumeLayout(false);
 
         }
