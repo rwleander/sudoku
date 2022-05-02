@@ -34,15 +34,25 @@ namespace sudoku
 
         private void sudoku_Layout(object sender, LayoutEventArgs e)
         {
-            int h, w, bx, by, bw, bh;
+            int h, w, bx, by, bw, bh, px, py, pw;
+
+            //  get window size
 
             w = ClientRectangle.Width;
             h = ClientRectangle.Height;
+
+            // determine button size and locations
 
             bx = w / 5;
             by = 2;
             bw = bx - 2;
             bh = btnNew.Height;
+
+            //  determine panel locations
+
+            pw = pnGrid.Width;
+            px = (w - pw) / 2;
+            py = pnGrid .Location .Y; 
 
             SuspendLayout();
 
@@ -60,6 +70,8 @@ namespace sudoku
 
             btnClose.Location = new Point(bx * 4, by);
             btnClose .Size = new Size(bw, bh);
+
+            pnGrid.Location = new Point(px, py);
 
             ResumeLayout();
 
@@ -330,9 +342,9 @@ namespace sudoku
         {
             int i = 0;
             int j = 0;
-            int x = 100;
-            int y = 100;
-            int tb = 10;
+            int x = 25;
+            int y = 25;
+            int tabIndex = 10;
 
             //  set up the context menu
 
@@ -349,20 +361,21 @@ namespace sudoku
                     txtItem[i, j] = new TextBox();
                     txtItem[i, j].Name = "txtItem" + i.ToString() + j.ToString();
                     txtItem[i, j].Location = new Point(x, y);
-                    txtItem[i, j].Size = new Size(20, 14);
+                    txtItem[i, j].Size = new Size(25, 14);
                     txtItem[i, j].TextAlign = HorizontalAlignment.Center;
+                    txtItem[i, j].BorderStyle = BorderStyle.None;
                     txtItem[i, j].Text = "";
-                    txtItem[i, j].TabIndex = tb;
+                    txtItem[i, j].TabIndex = tabIndex;
                     txtItem[i, j].Tag = new Point(i, j);
                     txtItem[i, j].KeyDown += new KeyEventHandler(txtItem_onKeyDown);
                     txtItem[i, j].ContextMenu = gridMenu;
-                    this.Controls.Add(txtItem[i, j]);
-                    x += 60;
-                    if (j == 2 || j == 5) x += 20;
-                    tb++;
+                    pnGrid.Controls.Add(txtItem[i, j]);
+                    x += 55;
+                    if (j == 2 || j == 5) x += 15;
+                    tabIndex++;
                 }
 
-                x = 100;
+                x = 25;
                 y += 35;
                 if (i == 2 || i == 5) y += 10;
             }

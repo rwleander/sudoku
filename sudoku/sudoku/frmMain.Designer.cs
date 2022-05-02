@@ -35,6 +35,7 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
+            this.pnGrid = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnNew
@@ -105,11 +106,20 @@
             this.dlgSave.Filter = "text *.txt|all *.*";
             this.dlgSave.Title = "Sudoku";
             // 
+            // pnGrid
+            // 
+            this.pnGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnGrid.Location = new System.Drawing.Point(60, 100);
+            this.pnGrid.Name = "pnGrid";
+            this.pnGrid.Size = new System.Drawing.Size(600, 400);
+            this.pnGrid.TabIndex = 5;
+            // 
             // sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.pnGrid);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -132,6 +142,7 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.SaveFileDialog dlgSave;
+        private System.Windows.Forms.Panel pnGrid;
     }
 }
 
