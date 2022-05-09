@@ -172,6 +172,8 @@ namespace sudoku
             //  get the coordinates of the current text box
 
             TextBox txtBox = (TextBox)sender;
+            bool readOnly = txtBox.ReadOnly;
+ 
             Point p = (Point)txtBox.Tag;
             int i = p.X;
             int j = p.Y;
@@ -181,57 +183,62 @@ namespace sudoku
             switch (e.KeyCode)
             {
                 case Keys.Space:
+                case Keys.NumPad0:
+                case Keys.D0:
+                    if (readOnly == false) 
+                    { 
                     puzzle.setCell(i, j, 0);
                     txtItem[i, j].Text = " ";
+            }
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad1:
                 case Keys.D1:
-                    handleKeystroke(i, j, 1);
+                    handleKeystroke(i, j, 1, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad2:
                 case Keys.D2:
-                    handleKeystroke(i, j, 2);
+                    handleKeystroke(i, j, 2, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad3:
                 case Keys.D3:
-                    handleKeystroke(i, j, 3);
+                    handleKeystroke(i, j, 3, readOnly);
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad4:
                 case Keys.D4:
-                    handleKeystroke(i, j, 4);
+                    handleKeystroke(i, j, 4, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad5:
                 case Keys.D5:
-                    handleKeystroke(i, j, 5);
+                    handleKeystroke(i, j, 5, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad6:
                 case Keys.D6:
-                    handleKeystroke(i, j, 6);
+                    handleKeystroke(i, j, 6, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad7:
                 case Keys.D7:
-                    handleKeystroke(i, j, 7);
+                    handleKeystroke(i, j, 7, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
@@ -239,13 +246,13 @@ namespace sudoku
                 case Keys.NumPad8:
                 case Keys.D8:
                     e.SuppressKeyPress = true;
-                    handleKeystroke(i, j, 8);
+                    handleKeystroke(i, j, 8, readOnly );
                     e.Handled = true;
                     break;
 
                 case Keys.NumPad9:
                 case Keys.D9:
-                    handleKeystroke(i, j, 9);
+                    handleKeystroke(i, j, 9, readOnly );
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                     break;
@@ -452,11 +459,12 @@ namespace sudoku
 
         //  handle keystrokes
 
-        void handleKeystroke(int i, int j, int n)
+        void handleKeystroke(int i, int j, int n, bool readOnly)
         {
             bool inRow = false;
             String ch;
 
+        if (readOnly == true) return;
 
             int[] row = puzzle.getRow(i);
             if (row.Contains(n)) inRow = true;

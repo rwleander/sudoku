@@ -91,7 +91,7 @@ namespace sudoku
             }
 
             puzzle.setCell(i, j, 0);
-            puzzle.setCell(8 - i, 8 - j, 0);
+            //puzzle.setCell(8 - i, 8 - j, 0);
         }
 
 
