@@ -436,6 +436,19 @@ namespace sudoku
             return true;
         }
 
+        //  count empty cells
+
+        public int countEmpty()
+        {
+            int n = 0;
+
+            for (int i=0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
+                    if (getCell(i, j) == 0) n++;
+
+            return n;
+        }
+
         //  find next empty cell
 
         public Point nextEmpty(int x, int y)

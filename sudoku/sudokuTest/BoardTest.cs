@@ -254,6 +254,23 @@ namespace sudokuTest
             Assert.AreEqual(9, missing[0]);
         }
 
+        //  test count empty cells
+
+        [TestMethod]
+        public void TestCountEmpty()
+        {
+            objBoard board = new objBoard();
+            int[] line = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            board.setBlock(0, line);
+            board.setBlock(2, line);
+            board.setBlock(6, line);
+            board.setBlock(8, line);
+
+            Assert.AreEqual(45, board.countEmpty());
+        }
+
+
+
         //  test nextEmpty method
 
         //  test for item in next row

@@ -428,6 +428,8 @@ namespace sudoku
             loadPage();
 
             frm.Close();
+
+            MessageBox.Show("Created new puzzle with " + puzzle.countEmpty().ToString() + " empty cells");
         }
 
         //  load the puzzle to the page
